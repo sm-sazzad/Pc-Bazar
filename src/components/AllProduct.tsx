@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export interface IProduct {
   _id: string;
@@ -65,9 +66,11 @@ const AllProduct = async () => {
                 {category}
               </h2>
 
-              <button className="text-sm cursor-pointer font-semibold text-blue-600 transition hover:text-blue-800">
-                View All →
-              </button>
+              <Link href={`/category/${category}`}>
+                <button className="text-sm cursor-pointer font-semibold text-blue-600 transition hover:text-blue-800">
+                  View All →
+                </button>
+              </Link>
             </div>
 
             {/* Product Grid */}
@@ -80,69 +83,68 @@ const AllProduct = async () => {
                     : 0;
 
                 return (
-                  <div
-                    key={n._id}
-                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
-                  >
-                    {/* Image Area */}
-                    <div className="relative flex items-center justify-center bg-gray-50 ">
-                      <Image
-                        src={n.image}
-                        alt={n.name}
-                        height={200}
-                        width={200}
-                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                      />
+                  <Link key={n._id} href={`/product/${n.slug}`}>
+                    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl">
+                      {/* Image Area */}
+                      <div className="relative flex items-center justify-center bg-gray-50 ">
+                        <Image
+                          src={n.image}
+                          alt={n.name}
+                          height={200}
+                          width={200}
+                          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                        />
 
-                      {/* Discount Badge */}
-                      {discount > 0 && (
-                        <span className="absolute left-3 top-3 rounded-md bg-red-500 px-2.5 py-1 text-xs font-bold text-white">
-                          -{discountPercent}%
-                        </span>
-                      )}
+                        {/* Discount Badge */}
+                        {discount > 0 && (
+                          <span className="absolute left-3 top-3 rounded-md bg-red-500 px-2.5 py-1 text-xs font-bold text-white">
+                            -{discountPercent}%
+                          </span>
+                        )}
 
-                      {/* Save Badge */}
-                      {discount > 0 && (
-                        <span className="absolute right-3 top-3 rounded-md bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">
-                          Save ৳{discount.toLocaleString("en-BD")}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Product Details */}
-                    <div className="flex flex-1 flex-col p-4">
-                      <h3 className="line-clamp-2 min-h-12 font-semibold text-gray-800 transition group-hover:text-blue-600">
-                        {n.name}
-                      </h3>
-
-                      <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5 text-gray-500">
-                        {n.description}
-                      </p>
-
-                      {/* Price */}
-                      <div className="mt-4 flex flex-wrap items-center gap-2">
-                        <span className="text-xl font-bold text-blue-700">
-                          ৳{n.currentPrice.toLocaleString("en-BD")}
-                        </span>
-
-                        {n.previousPrice > n.currentPrice && (
-                          <span className="text-sm text-gray-400 line-through">
-                            ৳{n.previousPrice.toLocaleString("en-BD")}
+                        {/* Save Badge */}
+                        {discount > 0 && (
+                          <span className="absolute right-3 top-3 rounded-md bg-green-100 px-2 py-1 text-xs font-semibold text-green-700">
+                            Save ৳{discount.toLocaleString("en-BD")}
                           </span>
                         )}
                       </div>
 
-                      {/* Stock / Availability (optional) */}
-                      <p className="mt-2 text-xs font-medium text-green-600">
-                        ● Available
-                      </p>
+                      {/* Product Details */}
+                      <div className="flex flex-1 flex-col p-4">
+                        <h3 className="line-clamp-2 min-h-12 font-semibold text-gray-800 transition group-hover:text-blue-600">
+                          {n.name}
+                        </h3>
 
-                      {/* Add to Cart */}
-                      <button className="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2.5 font-semibold text-white transition hover:bg-blue-700 active:scale-[0.98]">
-                        Add to Cart
-                      </button>
+                        <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-5 text-gray-500">
+                          {n.description}
+                        </p>
+
+                        {/* Price */}
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          <span className="text-xl font-bold text-blue-700">
+                            ৳{n.currentPrice.toLocaleString("en-BD")}
+                          </span>
+
+                          {n.previousPrice > n.currentPrice && (
+                            <span className="text-sm text-gray-400 line-through">
+                              ৳{n.previousPrice.toLocaleString("en-BD")}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Stock / Availability (optional) */}
+                        <p className="mt-2 text-xs font-medium text-green-600">
+                          ● Available
+                        </p>
+
+                        {/* Add to Cart */}
+                        <button className="mt-4 w-full cursor-pointer rounded-lg bg-blue-600 px-4 py-2.5 font-semibold text-white transition hover:bg-blue-700 active:scale-[0.98]">
+                          Add to Cart
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
