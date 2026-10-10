@@ -1,12 +1,13 @@
+import AllProduct from "@/components/AllProduct";
 import Category from "@/components/Category";
 import Hero from "@/components/Hero";
-import React from "react";
 
 const page = () => {
   return (
     <div>
       <Hero />
       <Category />
+      <AllProduct />
     </div>
   );
 };
