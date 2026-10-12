@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaSearch } from "react-icons/fa";
 
 export type Root = {
   _id: string;
@@ -42,6 +43,13 @@ const Navbar = async () => {
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-3">
+          <Link
+            href="/search"
+            aria-label="Search products"
+            className="inline-flex items-center justify-center rounded-full p-3 hover:bg-gray-100"
+          >
+            <FaSearch size={20} />
+          </Link>
           <button className="text-xl cursor-pointer hover:text-blue-600">
             🛒
           </button>

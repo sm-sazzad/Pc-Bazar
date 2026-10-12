@@ -53,7 +53,7 @@ const Category = async ({ params }: { params: Promise<{ slug: string }> }) => {
             return (
               <Link
                 key={n._id}
-                href={`/products/${n.slug}`}
+                href={`/product/${n.slug}`}
                 className={`group relative flex min-h-55 overflow-hidden rounded-2xl border border-slate-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:min-h-60 ${cardSize} ${cardColor}`}
               >
                 {/* Product Image */}

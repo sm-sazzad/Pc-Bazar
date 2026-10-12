@@ -53,7 +53,7 @@ const AllProduct = async () => {
   }, {});
 
   return (
-    <div className="mx-auto w-[95%] space-y-12 py-10">
+    <div className="mx-auto w-[90%] space-y-12 py-10">
       {Object.entries(groupedProducts).map(([category, products]) => {
         // const category = item[0];
         // const products = item[1];
